@@ -132,12 +132,11 @@ void *test(void *data) {
       
     if (unext) { // update
         
-      if (last < 0) { // add
+      if (1) { // add
           
         val = rand_range_re(&d->seed, d->range);
         if (set_add_l(d->set, val, TRANSACTIONAL)) {
           d->nb_added++;
-          last = val;
         } 				
         d->nb_add++;
           
