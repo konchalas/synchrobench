@@ -152,46 +152,10 @@ void *test(void *data) {
 				} 				
 				d->nb_add++;
 				
-			} else { // remove
-				
-				if (d->alternate) { // alternate mode (default)
-					if (set_remove(d->set, last, TRANSACTIONAL)) {
-						d->nb_removed++;
-					} 
-					last = -1;
-				} else {
-					/* Random computation only in non-alternated cases */
-					val = rand_range_re(&d->seed, d->range);
-					/* Remove one random value */
-					if (set_remove(d->set, val, TRANSACTIONAL)) {
-						d->nb_removed++;
-						/* Repeat until successful, to avoid size variations */
-						last = -1;
-					} 
-				}
-				d->nb_remove++;
-			}
-			
+			} 			
 		} else { // read
 				
-			if (d->alternate) {
-				if (d->update == 0) {
-					if (last < 0) {
-						val = d->first;
-						last = val;
-					} else { // last >= 0
-						val = rand_range_re(&d->seed, d->range);
-						last = -1;
-					}
-				} else { // update != 0
-					if (last < 0) {
-						val = rand_range_re(&d->seed, d->range);
-						//last = val;
-					} else {
-						val = last;
-					}
-				}
-			}	else val = rand_range_re(&d->seed, d->range);
+			val = rand_range_re(&d->seed, d->range);
 			
 			if (set_contains(d->set, val, TRANSACTIONAL)) 
 				d->nb_found++;
