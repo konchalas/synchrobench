@@ -134,10 +134,10 @@ void *test(void *data) {
         
       if (1) { // add
           
-        val = rand_range_re(&d->seed, d->range);
-        if (set_add_l(d->set, val, TRANSACTIONAL)) {
-          d->nb_added++;
-        } 				
+         val = rand_range_re(&d->seed, d->range);
+         if (set_add_l(d->set, val, TRANSACTIONAL)) {
+           d->nb_added++;
+         }
         d->nb_add++;
           
       }         

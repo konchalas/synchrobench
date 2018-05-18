@@ -1,11 +1,12 @@
 #!/bin/bash
+set -x
 
 ###
 # This script run synchrobench c-cpp with different data structures
 # and synchronization techniques as 'benchs' executables, with thread
 # counts 'threads', inital structure sizes 'sizes', update ratio 'updates'
-# sequential benchmarks 'seqbenchs', dequeue benchmarks 'deqbenchs' and 
-# outputs the throughput in separate log files 
+# sequential benchmarks 'seqbenchs', dequeue benchmarks 'deqbenchs' and
+# outputs the throughput in separate log files
 # '../log/${bench}-n${thread}-i${size}-u${upd}.${iter}.log'
 #
 # Select appropriate parameters below
@@ -34,21 +35,21 @@ echo "LD_PATH:" $LD_LIBRARY_PATH
 bin=../bin
 
 if [ ! -d "../log" ]; then
-	mkdir ../log	
+	mkdir ../log
 fi
 
 for size in ${sizes}
 do
-# make the range twice as large as initial size to maintain size expectation 
+# make the range twice as large as initial size to maintain size expectation
 r=`echo "2*${size}" | bc`
 for upd in ${updates}
-do 
+do
  for thread in ${threads}
  do
   for iter in ${iterations}
   do
    for bench in ${benchs}
-   do 
+   do
      ${bin}/${bench} -u ${upd} -i ${size} -r ${r} -d 5000 -t ${thread} -f 0 > ../log/${bench}-n${thread}-i${size}-u${upd}.${iter}.log
    done
    echo "Done experimenting concurrent benchs for 5000 milliseconds each"
@@ -62,11 +63,11 @@ for size in ${sizes}
 do
 r=`echo "2*${size}" | bc`
  for upd in ${updates}
- do 
+ do
   for iter in ${iterations}
   do
    for bench in ${seqbenchs}
-   do 
+   do
      ${bin}/${bench} -u ${upd} -i ${size} -r ${r} -d 5000 -t 1 -f 0 > ../log/${bench}-i${size}-u${upd}-sequential.${iter}.log
    done
   done
@@ -75,13 +76,13 @@ done
 
 # for dequeue
 for upd in ${updates}
-do 
+do
  for thread in ${threads}
  do
   for iter in ${iterations}
   do
    for bench in ${deqbenchs}
-   do 
+   do
      ${bin}/${bench} -i 128 -r 256 -d 5000 -t ${thread} > ../log/${bench}-n${thread}.${iter}.log
    done
   done
@@ -95,13 +96,13 @@ for size in ${sizes}
 do
  r=`echo "2*${size}" | bc`
  for upd in ${updates}
- do 
+ do
   for thread in ${threads}
   do
    for iter in ${iterations}
    do
     for bench in ${benchs}
-    do 
+    do
      ${bin}/${bench} -x2 -u ${upd} -i ${size} -r ${r} -d 5000 -t ${thread} -f 0 > ../log/${bench}-n${thread}-i${size}-u${upd}-lazy.${iter}.log
     done
    done
