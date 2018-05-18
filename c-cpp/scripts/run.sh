@@ -11,12 +11,12 @@
 # Select appropriate parameters below
 #
 #threads="1 4 8 12 16 20 24 28 32"
-threads="4"
+threads="1 2 4 8 16 32"
+benchs="lockfree-linkedlist SPIN-lazy-list"
 #benchs="tcmalloc-lockfree-ll tcmalloc-spinlock-ht tcmalloc-estm-rt tcmalloc-estm-sl tcmalloc-fraser-sl tcmalloc-rotating-sl tcmalloc-spinlock-ll tcmalloc-estm-ll tcmalloc-estm-st tcmalloc-lockfree-ht tcmalloc-spinlock-sl tcmalloc-estm-ht tcmalloc-spinlock-btree"
-benchs="ESTM-hashtable lockfree-hashtable MUTEX-hashtable"
+#benchs="ESTM-hashtable lockfree-hashtable MUTEX-hashtable"
 #lockfree-fraser-skiplist lockfree-rotating-skiplist lockfree-nohotspot-skiplist SPIN-skiplist"
 #seqbenchs="tcmalloc-sequential-ll tcmalloc-sequential-rt tcmalloc-sequential-ht tcmalloc-sequential-sl"
-seqbenchs="sequential-hashtable"
 #iterations="1 2 3 4 5 6 7 8 9 10"
 iterations="1 2"
 #updates="0 100"
