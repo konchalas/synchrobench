@@ -167,9 +167,6 @@ ifeq ($(OS_NAME), SunOS)
 endif
 
 ifndef STM
-  ifeq ($(LOCK),MUTEX)
-    CFLAGS += -DMUTEX
-  endif
 endif
 
 #################################

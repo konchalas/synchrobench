@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 ###
 # This script run synchrobench c-cpp with different data structures
@@ -12,14 +11,14 @@ set -x
 # Select appropriate parameters below
 #
 #threads="1 4 8 12 16 20 24 28 32"
-threads="1 2 4 8 16 32"
+threads="1 2 4 8 16"
 benchs="lockfree-linkedlist SPIN-lazy-list"
 #benchs="tcmalloc-lockfree-ll tcmalloc-spinlock-ht tcmalloc-estm-rt tcmalloc-estm-sl tcmalloc-fraser-sl tcmalloc-rotating-sl tcmalloc-spinlock-ll tcmalloc-estm-ll tcmalloc-estm-st tcmalloc-lockfree-ht tcmalloc-spinlock-sl tcmalloc-estm-ht tcmalloc-spinlock-btree"
 #benchs="ESTM-hashtable lockfree-hashtable MUTEX-hashtable"
 #lockfree-fraser-skiplist lockfree-rotating-skiplist lockfree-nohotspot-skiplist SPIN-skiplist"
 #seqbenchs="tcmalloc-sequential-ll tcmalloc-sequential-rt tcmalloc-sequential-ht tcmalloc-sequential-sl"
 #iterations="1 2 3 4 5 6 7 8 9 10"
-iterations="1 2"
+iterations="1"
 #updates="0 100"
 updates="10"
 #size="1024 4096 8192 16384 32768 65536"
@@ -50,9 +49,9 @@ do
   do
    for bench in ${benchs}
    do
-     ${bin}/${bench} -u ${upd} -i ${size} -r ${r} -d 5000 -t ${thread} -f 0 > ../log/${bench}-n${thread}-i${size}-u${upd}.${iter}.log
+     ${bin}/${bench} -u ${upd} -i 0 -r 1024 -d 10000 -t ${thread} -f 0 > ../log/${bench}-n${thread}-i${size}-u${upd}.${iter}.log
    done
-   echo "Done experimenting concurrent benchs for 5000 milliseconds each"
+   echo "Done experimenting concurrent benchs for 10000 milliseconds each"
   done
  done
 done
